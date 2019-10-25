@@ -81,8 +81,10 @@ function handleItemCheckClicked() {
     });
 }
 
-function deleteItemFromStore(item) {
-
+function deleteItemFromStore(itemId) {
+    console.log("delete list element");
+    const item = STORE.find(item => item.id === itemId);
+    STORE.splice(item, 1);
 }
 
 function handleDeleteItemClicked() {
@@ -90,8 +92,8 @@ function handleDeleteItemClicked() {
     // item
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
         const id = getItemIdFromElement(event.currentTarget);
-
-
+        deleteItemFromStore(id);
+        renderShoppingList();
     })
     console.log('`handleDeleteItemClicked` ran');
 }
